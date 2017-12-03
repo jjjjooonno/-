@@ -2,10 +2,11 @@ from selenium import webdriver
 from pandas import *
 from bs4 import BeautifulSoup
 import time
-
+teams = ['ATL','BOS','BRK','CHO','CHI','CLE','DAL','DEN','DET','GSW','HOU','IND','LAC','LAL','MEM','MIA','MIL','NYK','OKC','ORL','PHI','PHO','POR','SAC','SAS','TOR','UTA','WAS','MIN','NOP']
 dr = webdriver.Chrome('/Users/joono/chromedriver')
-dr.get('https://www.basketball-reference.com/teams/BOS/2017.html')
-for i in range(0,17):
+
+for i in teams:
+    dr.get('https://www.basketball-reference.com/teams/{0}/2018.html'.format(i))
     drt = dr.page_source
     soup = BeautifulSoup(drt,'html.parser')
     data = []
@@ -27,5 +28,5 @@ for i in range(0,17):
         per.append(j[4])
         dws.append(j[17])
     dt = DataFrame({'PLAYER_NAME' : player,'MP':mp,'PER':per,'DWS':dws})
-    dt.to_csv('Boston_1617.csv',index=None)
+    dt.to_csv('{0}_1718.csv'.format(i),index=None)
     time.sleep(5)

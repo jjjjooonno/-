@@ -50,7 +50,7 @@ near_subways = []
 elevator = []
 movein_date = []
 description = []
-user_has_penalty = []
+user = []
 with urllib.request.urlopen(url_json_holder[0]) as url:
     data = json.loads(url.read().decode())
 for i in data['items']:
@@ -62,8 +62,8 @@ for i in data['items']:
     near_subways.append(i['item']['near_subways'])
     elevator.append(i['item']['elevator'])
     movein_date.append(i['item']['movein_date'])
-    description.append(i['item']['description'])
-    user_has_penalty.append(i['item']['user_has_penalty'])
+    description.append(i['item']['title'])
+    user.append(i['item']['agent_name'])
 zigbangs = DataFrame({'월세':rent,'보증금/전세':deposit,'층':floor,'건물층수':floor_all,'평수':size,'가까운 역':near_subways,
-                      '입주날짜':movein_date,'설명':description,'판매자벌점여부':user_has_penalty})
-zigbangs.to_csv('zigbang_{0}.csv'.format(keyword))
+                      '입주날짜':movein_date,'설명':description,'중개사':user})
+zigbangs.to_csv('zigbang_113_{0}.csv'.format(keyword))
