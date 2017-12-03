@@ -26,7 +26,6 @@ for i in teams:
         player.append(j[0])
         mp.append(j[3])
         per.append(j[4])
-        dws.append(j[17])
-    dt = DataFrame({'PLAYER_NAME' : player,'MP':mp,'PER':per,'DWS':dws})
+    dt = DataFrame({'PLAYER_NAME' : player,'MP':mp,'PER':per})
     dt.to_csv('{0}_1718.csv'.format(i),index=None)
     time.sleep(5)
